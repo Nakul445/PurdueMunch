@@ -3,30 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Order Confirmed</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PT Serif', serif;
+        }
+
         body {
-            text-align: center;
+            background-color: #CEB888;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            padding: 2em;
         }
 
-        button {
-            height: 5em;
-            padding: 1em;
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 1em;
         }
 
-        * {
-            background-color: #CEB888;
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 2em;
+        }
+
+        a button {
+            background-color: white;
+            border: 2px solid #333;
+            color: #333;
+            padding: 1em 2em;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        a button:hover {
+            background-color: #333;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Thank you for placing your order</h1>
-    <a href = "windsoronthego.html">
-    <button>CLICK HERE TO GO BACK</button>
-    </a>
+<h1>Thanks for your order!</h1>
+<p>Your on-the-go order has been placed successfully.</p>
+<a href="index.html">
+    <button>Return to Homepage</button>
+</a>
 </body>
 </html>
