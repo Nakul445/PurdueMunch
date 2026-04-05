@@ -1,91 +1,56 @@
-const db = firebase.firestore();
-const auth = firebase.auth();
+const buttons = document.querySelectorAll("main button");
+const submit = document.getElementById("submit");
+const selectionMessage = document.getElementById("selection-message");
+const page1 = document.getElementById("page-1");
+const page2 = document.getElementById("page-2");
+let selectedItems = [];
+let confirmStep = false;
 
-const itemRows = document.querySelectorAll("[data-item]");
-let currentUser = null;
-let userLikes = {}; // { "Quinoa and Potato Salad": true, ... }
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const buttonText = e.target.textContent;
+    const isSelected = selectedItems.includes(buttonText);
 
-// ---------- Auth state ----------
-auth.onAuthStateChanged(async (user) => {
-  currentUser = user;
-  if (user) {
-    const userDoc = await db.collection("userLikes").doc(user.uid).get();
-    userLikes = userDoc.exists ? (userDoc.data().items || {}) : {};
-  } else {
-    userLikes = {};
-  }
-  refreshHeartIcons();
+    if (!isSelected && selectedItems.length < 3) {
+      selectedItems.push(buttonText);
+      e.target.style.backgroundColor = "#CEB888";
+    } else if (isSelected) {
+      const index = selectedItems.indexOf(buttonText);
+      if (index > -1) {
+        selectedItems.splice(index, 1);
+      }
+      e.target.style.backgroundColor = "transparent";
+    }
+
+    updateSelectionList();
+  });
 });
 
-function refreshHeartIcons() {
-  itemRows.forEach((row) => {
-    const itemName = row.dataset.item;
-    const icon = row.querySelector(".icon-toggle");
-    if (userLikes[itemName]) {
-      icon.classList.remove("bi-heart");
-      icon.classList.add("bi-heart-fill", "heart-fill");
-    } else {
-      icon.classList.remove("bi-heart-fill", "heart-fill");
-      icon.classList.add("bi-heart");
+submit.addEventListener("click", () => {
+  if (!confirmStep) {
+    // First click: show the order review page
+    if (selectedItems.length === 0) {
+      alert("Please select up to three items before hitting submit.");
+      return;
     }
+    page1.classList.add("hide-display");
+    page2.classList.remove("hide-display");
+    submit.innerHTML = "Confirm your order";
+    confirmStep = true;
+  } else {
+    // Second click: confirm and go to thank you page
+    window.location.href = "page3.html";
+  }
+});
+
+function updateSelectionList() {
+  selectionMessage.innerHTML = "";
+  selectedItems.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    selectionMessage.appendChild(listItem);
   });
 }
 
-// ---------- Global totals (real-time) ----------
-itemRows.forEach((row) => {
-  const itemName = row.dataset.item;
-  const counter = row.querySelector(".like-counter");
-
-  db.collection("itemTotals").doc(itemName).onSnapshot((doc) => {
-    const count = doc.exists ? (doc.data().count || 0) : 0;
-    counter.textContent = count;
-  });
-});
-
-// ---------- Click handling ----------
-itemRows.forEach((row) => {
-  const itemName = row.dataset.item;
-  const icon = row.querySelector(".icon-toggle");
-
-  icon.addEventListener("click", async () => {
-    if (!currentUser) {
-      alert("Please log in to like items.");
-      return;
-    }
-
-    const alreadyLiked = !!userLikes[itemName];
-    const userRef = db.collection("userLikes").doc(currentUser.uid);
-    const totalRef = db.collection("itemTotals").doc(itemName);
-
-    try {
-      await db.runTransaction(async (transaction) => {
-        const totalDoc = await transaction.get(totalRef);
-        const currentCount = totalDoc.exists ? (totalDoc.data().count || 0) : 0;
-        const newCount = alreadyLiked
-            ? Math.max(0, currentCount - 1)
-            : currentCount + 1;
-
-        transaction.set(totalRef, { count: newCount }, { merge: true });
-
-        // Ensure the user doc exists, then update just this item field
-        transaction.set(userRef, { items: {} }, { merge: true });
-        const itemUpdate = {};
-        itemUpdate[`items.${itemName}`] = alreadyLiked
-            ? firebase.firestore.FieldValue.delete()
-            : true;
-        transaction.update(userRef, itemUpdate);
-      });
-
-      // Update local state + UI immediately
-      if (alreadyLiked) {
-        delete userLikes[itemName];
-      } else {
-        userLikes[itemName] = true;
-      }
-      refreshHeartIcons();
-    } catch (err) {
-      console.error("Failed to update like:", err);
-      alert("Could not save your like. Please try again.");
-    }
-  });
-});
+page1.classList.remove("hide-display");
+page2.classList.add("hide-display");
