@@ -17,7 +17,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.17.0/font/bootstrap-icons.min.css">
-
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,13 +40,13 @@
                 <a class="nav-link" href="polls2.html">Food Polls</a>
             </li>
             <li>
-                <div class = "select">
-                <label for="meal">Meal</label>
-                <select name="Meal" id="meal">
-                    <option style= "background: #A9A9A9;">Lunch</option>
-                    <option value="Late Lunch">Late Lunch</option>
-                    <option value="Dinner">Dinner</option>
-                </select>
+                <div class="select">
+                    <label for="meal">Meal</label>
+                    <select name="Meal" id="meal">
+                        <option style="background: #A9A9A9;">Lunch</option>
+                        <option value="Late Lunch">Late Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
                 </div>
             </li>
         </ul>
@@ -67,21 +66,18 @@
                 <h4 class="my-0 fw-normal">Grain Central Station</h4>
             </div>
             <br>
-
             <div class="card-body">
-                <div>
+                <div data-item="Quinoa and Potato Salad">
                     <span>Quinoa and Potato Salad</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Amish Potato Salad">
                     <span>Amish Potato Salad</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-                <br>
-                <br>
+                <br><br>
             </div>
         </div>
     </div>
@@ -91,25 +87,22 @@
                 <h4 class="my-0 fw-normal">Chelsea Garden</h4>
             </div>
             <div class="card-body">
-                <div>
+                <div data-item="Delicious Fruit Salad">
                     <span>Delicious Fruit Salad</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Vanilla Yoghurt">
                     <span>Vanilla Yoghurt</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Strawberry Yoghurt">
                     <span>Strawberry Yoghurt</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Granola">
                     <span>Granola</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
@@ -123,20 +116,17 @@
                 <h4 class="my-0 fw-normal">Halal</h4>
             </div>
             <div class="card-body">
-                <div>
+                <div data-item="Shepherd's Pie Halal">
                     <span>Shepherd's Pie Halal</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Rice">
                     <span>Rice</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-                <br>
-                <br>
-                <br>
+                <br><br><br>
             </div>
         </div>
     </div>
@@ -150,13 +140,12 @@
                 <i class="bi bi-heart"></i>
             </div>
             <div class="card-body">
-                <div>
+                <div data-item="Spaghetti">
                     <span>Spaghetti</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Portobello Chop Suey">
                     <span>Portobello Chop Suey</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
@@ -170,13 +159,12 @@
                 <h4 class="my-0 fw-normal">Burrito Bar</h4>
             </div>
             <div class="card-body">
-                <div>
+                <div data-item="Black Beans">
                     <span>Black Beans</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Sofritas">
                     <span>Sofritas</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
@@ -191,13 +179,12 @@
                 <h4 class="my-0 fw-normal">Devonshire Way</h4>
             </div>
             <div class="card-body">
-                <div>
+                <div data-item="Glazed Lemon Cookie">
                     <span>Glazed Lemon Cookie</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
                 </div>
-
-                <div>
+                <div data-item="Edible Chocolate Chip Cookie Dough">
                     <span>Edible Chocolate Chip Cookie Dough</span>
                     <button class="btn"><i class="bi bi-heart icon-toggle"></i></button>
                     <span class="like-counter">0</span>
@@ -207,6 +194,11 @@
         </div>
     </div>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
 <script src="windsor.js"></script>
 </body>
-
+</html>
