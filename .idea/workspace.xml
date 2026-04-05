@@ -10,6 +10,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -66,7 +73,7 @@
       <workItem from="1774973293348" duration="5209000" />
       <workItem from="1774997309123" duration="600000" />
       <workItem from="1775063869715" duration="820000" />
-      <workItem from="1775413867792" duration="5822000" />
+      <workItem from="1775413867792" duration="6606000" />
     </task>
     <task id="LOCAL-00001" summary="Changed voting logic to count votes correctly and store them in firebase">
       <option name="closed" value="true" />
