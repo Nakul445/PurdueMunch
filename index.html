@@ -3,57 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purdue Menus</title>
-    <link rel="stylesheet" href="index.css"> <!-- Link to your CSS file -->
+    <title>Purdue Munch</title>
+    <link rel="stylesheet" href="index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.nhtmet/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- partial:index.partial.html -->
-  <html>
-     <div class="mainPageHeaderTwo">
+<div class="mainPageHeaderTwo">
     <div class="mainPageHeader">
-    <img src="https://github.com/SuhaniDadhich3/helloWorld/blob/main/PURDUE%20MUNCH-4.jpg?raw=true">
-  </div></div>
-    
-  <div class = main-body>
-    <br></br> <br></br> <br></br> <center>
-    <a href = "mainPage.html" style="text-decoration: none;">
-      <div class="mainPageButton"> 
-        <p> RESIDENTIAL DINING </p>
-      </div> <br> </br>
-    </a>
-    
-    <a href = "onthego.html" style = "text-decoration: none;">
-    <div class="mainPageButton"> 
-     <p> ON THE GO </p>
-    </div> <br> </br>
+        <img src="https://github.com/SuhaniDadhich3/helloWorld/blob/main/PURDUE%20MUNCH-4.jpg?raw=true" alt="Purdue Munch">
+    </div>
+</div>
 
-    <a href = "donation.html" style = "text-decoration: none;">
-    <div class="mainPageButton"> 
-      <p> MEAL SWIPES </p> </div>
-    </a>
-  <!--   </div> <br> </br> </center><div  -->
-    <!-- partial -->
-  </div>
-      <script>
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    document.getElementById('loginBtn').addEventListener('click', function() {
-        // Set a flag in localStorage indicating whether the user is logged in
-        const buttonText = this.textContent;
+<div class="main-body">
+    <div class="text-end p-3">
+        <button type="button" class="btn btn-outline-light me-2" id="loginBtn">Login</button>
+    </div>
 
-        if(buttonText === 'Login') {
-            window.location.href = 'login.html';
-        } else {
-            localStorage.setItem('isLoggedIn', 'false');
-            document.getElementById('loginBtn').textContent = 'Login';
-            alert('You have successfully logged out!');
+    <center>
+        <br><br>
+
+        <a href="mainPage.html" style="text-decoration: none;">
+            <div class="mainPageButton">
+                <p>RESIDENTIAL DINING</p>
+            </div>
+        </a>
+        <br>
+
+        <a href="onthego.html" style="text-decoration: none;">
+            <div class="mainPageButton">
+                <p>ON THE GO</p>
+            </div>
+        </a>
+        <br>
+
+        <a href="donation.html" style="text-decoration: none;">
+            <div class="mainPageButton">
+                <p>MEAL SWIPES</p>
+            </div>
+        </a>
+        <br>
+
+        <a href="polls2.html" style="text-decoration: none;">
+            <div class="mainPageButton">
+                <p>FOOD POLLS</p>
+            </div>
+        </a>
+        <br>
+    </center>
+</div>
+
+<script>
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+        if (isLoggedIn === 'true') {
+            loginBtn.textContent = 'Logout';
         }
-    });
 
-    if(isLoggedIn) {
-        document.getElementById('loginBtn').textContent = 'Logout';
+        loginBtn.addEventListener('click', function () {
+            const buttonText = this.textContent.trim();
+            if (buttonText === 'Login') {
+                window.location.href = 'login.html';
+            } else {
+                localStorage.setItem('isLoggedIn', 'false');
+                loginBtn.textContent = 'Login';
+                alert('You have successfully logged out!');
+            }
+        });
     }
 </script>
-  </body>
-  </html>
+</body>
+</html>
